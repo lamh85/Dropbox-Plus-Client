@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { hot } from "react-hot-loader"
+import { getFolder } from '../services/api.js'
 
 class App extends Component {
   constructor(props) {
@@ -64,6 +65,11 @@ class App extends Component {
     return (
       <div className="app">
         <h1>Box Editor</h1>
+
+        <button onClick={() => getFolder('financial planning')}>
+          CLICK ME to get folder
+        </button>
+
         <div>{JSON.stringify(this.state)}</div>
 
         <div style={this.state.style}>
