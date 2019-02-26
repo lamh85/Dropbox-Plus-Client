@@ -97,3 +97,4 @@ class App extends Component {
 }
 
 export default hot(module)(App)
+// testing signed commit
