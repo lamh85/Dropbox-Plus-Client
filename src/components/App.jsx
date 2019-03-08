@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { hot } from "react-hot-loader"
 import { fetch } from 'whatwg-fetch'
 
-
+import TableRow from './TableRow.jsx'
 
 const PATH_ROOT = 'http://localhost:3000'
 
@@ -21,11 +21,12 @@ class App extends Component {
   
   getFolder = path => {
     const pathEncoded = encodeURI(path)
-    fetch(`${PATH_ROOT}/folder?path=${pathEncoded}`).then(response => {
-      return response.json()
-    }).then(response => {
-      this.handleGetSuccess(response)
-    })
+    fetch(`${PATH_ROOT}/folder?path=${pathEncoded}`)
+      .then(response => {
+        return response.json()
+      }).then(response => {
+        this.handleGetSuccess(response)
+      })
   }
   
   render() {
@@ -35,7 +36,16 @@ class App extends Component {
           CLICK ME to get folder
         </button>
         
-        { JSON.stringify(this.state.folderItems) }
+        {
+          this.state.folderItems.length > 0 &&
+          this.state.folderItems.map((item, index) => {
+            return <TableRow {...item} key={index} />
+          })
+        }
+        
+        {/*
+          [".tag","name","path_lower","path_display","id","client_modified","server_modified","rev","size","content_hash"]
+        */}
       </div>
     )
   }
