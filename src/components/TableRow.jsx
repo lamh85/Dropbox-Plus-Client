@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { hot } from "react-hot-loader"
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const RowStyles = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const getFlexGrow = stylesProps => {
 
 const CellStyles = styled.div`
   flex-basis: 0;
-  flex-grow: ${props => getFlexGrow(props)}
+  flex-grow: ${props => getFlexGrow(props)};
 `
 
 class TableRow extends Component {
@@ -37,6 +38,11 @@ class TableRow extends Component {
       </RowStyles>
     )
   }
+}
+
+TableRow.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default hot(module)(TableRow)
